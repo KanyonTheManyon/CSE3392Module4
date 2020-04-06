@@ -2,11 +2,70 @@
 .ui.centered.grid
   .ten.wide.column
     #symptom-checker.panel
+      .ui.three.ordered.steps
+        .active.step
+          .content
+            .title Assessment
+            .description We'll review your specific symptoms and exposure risk
+        .step
+          .content
+            .title Local Comparison
+            .description We'll compare your data against those in your area
+        .step
+          .content
+            .title Sites & More Info
+            .description If needed, we will provide you with additional information
+      
       %h1.ui.header.top.attached.blue Should I get tested?
       .ui.segment.stacked.attached
-        / MAIN FORM
         %form#assessment.ui.form
-          %p= BetterLorem.p(10, true)
+          %h3.ui.attached Have you experienced any of the following symptoms?
+          .ui.fitted.divider
+          %br
+          .inline.field
+            .ui.checkbox
+              %input.hidden{:tabindex => "0", :type => "checkbox"}/
+              %label Aches and pains
+          .inline.field
+            .ui.checkbox
+              %input.hidden{:tabindex => "0", :type => "checkbox"}/
+              %label Fever
+          .inline.field
+            .ui.checkbox
+              %input.hidden{:tabindex => "0", :type => "checkbox"}/
+              %label Dry cough
+          .inline.field
+            .ui.checkbox
+              %input.hidden{:tabindex => "0", :type => "checkbox"}/
+              %label Fatigue
+          %h3.segment Exposure assessment
+          .ui.fitted.divider
+          %br
+          .field
+            %label Have you had contact with an individual that tested positive for COVID-19?
+            .ui.selection.dropdown
+              %input{:name => "contact", :type => "hidden"}/
+              %i.dropdown.icon
+              .default.text Fill out
+              .menu
+                .item{"data-value" => "0"} No, not to my knowledge.
+                .item{"data-value" => "1"} Maybe, I am unsure if I made contact.
+                .item{"data-value" => "2"} Yes, I am currently COVID-19 positive or have made contact with somebody who has.
+          .field
+            %label Did you travel outside your state or country in the last 2-14 days?
+            .ui.selection.dropdown
+              %input{:name => "travel", :type => "hidden"}/
+              %i.dropdown.icon
+              .default.text Fill out
+              .menu
+                .item{"data-value" => "0"} No, I have not traveled.
+                .item{"data-value" => "1"} Yes, I have traveled.
+          .field
+            %label If so, where?
+            %input{:name => "where", :placeholder => "State or country of travel", :type => "text"}/
+          %br
+          %button.ui.primary.button{:type => "submit"} Submit
+
 
 / DO NOT MODIFY ANYTHING BELOW THESE LINES
 :coffeescript

@@ -8,7 +8,7 @@
   $ ->
     alertify.set('notifier','position', 'top-left')
     
-    response1 = problem1(SYMPTOMS_STR_1)
+    response1 = problem1(SYMPTOMS_STR_2)
     $('#response').html(response1)
     
     problem2(SYMPTOMS_ARR_1)
@@ -17,12 +17,27 @@
 
   problem1 = (symptoms_string)->
     console.log "PROBLEM1: STRING MANIPULATION"
-    # TODO
-    return "TODO"
+    result = symptoms_string.split(" ")
+    result.splice(0, 1)
+    result = result.join(" ")
+    result = result.split(",")
+    result = _.map(result, (el) => el.trim(" "))
+    result = _.map(result, (el) => el.toLowerCase())
+    result = _.filter(result, (symptom) => _.contains(COVID_SYMPTOMS, symptom))
+    result = result.join("; ")
+    console.log result
+    return result
     
   problem2 = (symptoms_arr)->
     console.log "PROBLEM2: PROGRAMMATIC DOM"
-    # TODO
+    rightList = $('.ui.list.ordered.right')
+    _.each(symptoms_arr, (symptom) => 
+      ListElement = $('<li>')
+      ListElement.html(symptom)
+      
+      rightList.append(ListElement)
+    )
+    
     return
     
   problem3 = ()->
